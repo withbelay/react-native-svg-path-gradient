@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/react-native-svg-path-gradient.svg)](https://www.npmjs.com/package/react-native-svg-path-gradient)
 
-Adds a `<GradientPath>` componenet used for creating color gradients along a custom path
+Adds a `<GradientPath>` component used for creating color gradients along a custom path
 
 ## Table of Contents
 
