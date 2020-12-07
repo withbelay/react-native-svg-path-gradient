@@ -1,0 +1,33 @@
+{
+  "name": "react-native-svg-path-gradient",
+  "version": "0.0.1",
+  "description": "A utility for create gradient paths with react-native-svg",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/investingwolf/react-native-svg-path-gradient.git"
+  },
+  "author": "Michel Kassabov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/investingwolf/react-native-svg-path-gradient/issues"
+  },
+  "homepage": "https://github.com/investingwolf/react-native-svg-path-gradient#readme",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.50.0",
+    "react-native-svg": "^6.2.1||^7.0.3"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "svg-path-properties": "^1.0.10"
+  },
+  "devDependencies": {
+    "react": "^17.0.1",
+    "react-native": "^0.63.4",
+    "react-native-svg": "^12.1.0"
+  }
+}
