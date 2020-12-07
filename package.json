@@ -1,6 +1,6 @@
 {
   "name": "react-native-svg-path-gradient",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A utility for create gradient paths with react-native-svg",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": ">=0.50.0",
-    "react-native-svg": "^6.2.1||^7.0.3"
+    "react-native-svg": ">=6.0.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
