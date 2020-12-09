@@ -1,7 +1,7 @@
 {
   "name": "react-native-svg-path-gradient",
   "version": "0.1.1",
-  "description": "A utility for create gradient paths with react-native-svg",
+  "description": "A utility for creating gradient paths with react-native-svg",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
