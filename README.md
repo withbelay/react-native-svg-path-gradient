@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/react-native-svg-path-gradient.svg)](https://www.npmjs.com/package/react-native-svg-path-gradient) [![Downloads](https://img.shields.io/npm/dw/react-native-svg-path-gradient)](https://www.npmjs.com/package/react-native-svg-path-gradient)
 
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/investingwolf/react-native-svg-path-gradient)](https://github.com/investingwolf/react-native-svg-path-gradient/pulls) [![GitHub issues](https://img.shields.io/github/issues-raw/investingwolf/react-native-svg-path-gradient)](https://github.com/investingwolf/react-native-svg-path-gradient/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/investingwolf/react-native-svg-path-gradient)](https://github.com/investingwolf/react-native-svg-path-gradient/pulls) [![GitHub issues](https://img.shields.io/github/issues-raw/investingwolf/react-native-svg-path-gradient)](https://github.com/investingwolf/react-native-svg-path-gradient/issues) ![GitHub Repo stars](https://img.shields.io/github/stars/investingwolf/react-native-svg-path-gradient?style=social)
 
 Adds a `<GradientPath>` component used for creating color gradients along a custom path
 
