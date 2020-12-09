@@ -16,6 +16,16 @@
     "url": "https://github.com/investingwolf/react-native-svg-path-gradient/issues"
   },
   "homepage": "https://github.com/investingwolf/react-native-svg-path-gradient#readme",
+  "keywords": [
+    "svg",
+    "gradient",
+    "path",
+    "linear",
+    "react-native",
+    "react-native-component",
+    "ios",
+    "android"
+  ],
   "peerDependencies": {
     "react": "*",
     "react-native": ">=0.50.0",
