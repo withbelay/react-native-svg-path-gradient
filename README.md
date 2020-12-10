@@ -63,7 +63,7 @@ Takes a number value for the precision of the path segments. Lower is more accur
 
 Takes a boolean value, default is `false`. If `true` the corners of the path become rounded. Due to being a boolean value it is possible to just write `roundedCorners` as a prop with no value and `react-native` will treat it as true
 
-**Note:** Rounded Corners effectively doesn't round the corners as much as it extrudes the line caps. This means that your path can become slightly longer when he linecap is added. Also linecaps can be added for "closed" paths which will present an issue so this prop should be avoided
+**Note:** Rounded Corners effectively doesn't round the corners as much as it extrudes the line caps. This means that your path can become slightly longer when the linecap is added. Also linecaps can be added for "closed" paths which will present an issue so this prop should be avoided
 
 ## Examples
 
