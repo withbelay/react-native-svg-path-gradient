@@ -4,6 +4,7 @@
   "description": "A utility for creating gradient paths with react-native-svg",
   "main": "index.js",
   "scripts": {
+    "lint": "npx eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -36,6 +37,8 @@
     "svg-path-properties": "^1.0.10"
   },
   "devDependencies": {
+    "@react-native-community/eslint-config": "^2.0.0",
+    "eslint": "^7.15.0",
     "react": "^17.0.1",
     "react-native": "^0.63.4",
     "react-native-svg": "^12.1.0"
