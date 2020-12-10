@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {Path, G} from 'react-native-svg';
-import PropTypes from 'prop-types';
-import {svgPathProperties} from 'svg-path-properties';
-import Color from 'color';
+import React, { Component } from "react";
+import { Path, G } from "react-native-svg";
+import PropTypes from "prop-types";
+import { svgPathProperties } from "svg-path-properties";
+import Color from "color";
 
 export default class GradientPath extends Component {
   render() {
-    const {d, colors, strokeWidth, precision} = this.props;
+    const { d, colors, strokeWidth, precision } = this.props;
     const pathList = quads(samples(d, precision));
-    const gradientArray = interpolateColors(colors, pathList.length);
+    const gradientArray = interpolateColors(colors, pathList.length).reverse();
 
     return (
       <G>
@@ -119,7 +119,7 @@ function lineJoin(p0, p1, p2, p3, width) {
     c = lineIntersect(p2, e, d, c);
   }
 
-  return 'M' + a + 'L' + b + ' ' + c + ' ' + d + 'Z';
+  return "M" + a + "L" + b + " " + c + " " + d + "Z";
 }
 
 // Compute intersection of two infinite lines ab and cd.
