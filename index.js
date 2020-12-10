@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Path, G, Circle } from "react-native-svg";
-import PropTypes from "prop-types";
-import { svgPathProperties } from "svg-path-properties";
-import Color from "color";
+import React, {Component} from 'react';
+import {Path, G, Circle} from 'react-native-svg';
+import PropTypes from 'prop-types';
+import {svgPathProperties} from 'svg-path-properties';
+import Color from 'color';
 
 export default class GradientPath extends Component {
   render() {
@@ -23,7 +23,7 @@ export default class GradientPath extends Component {
 
     const PATH_START = path.getPointAtLength(0);
     const PATH_END = path.getPointAtLength(
-      Math.round(path.getTotalLength() * percent_)
+      Math.round(path.getTotalLength() * percent_),
     );
 
     return (
@@ -44,17 +44,11 @@ export default class GradientPath extends Component {
             />
           </G>
         )}
-        {pathList.map((path, i) => (
+        {pathList.map(([p0, p1, p2, p3], i) => (
           <>
             {i < croppedPathIndex ? (
               <Path
-                d={lineJoin(
-                  path[0],
-                  path[1],
-                  path[2],
-                  path[3],
-                  strokeWidth - 1
-                )}
+                d={lineJoin(p0, p1, p2, p3, strokeWidth - 1)}
                 stroke={gradientArray[i]}
                 fill={gradientArray[i]}
               />
@@ -87,7 +81,7 @@ GradientPath.propTypes = {
 // color interpolation function
 function interpolateColors(colors, colorCount) {
   if (colors.length === 0) {
-    return Array(colorCount).fill("#000000");
+    return Array(colorCount).fill('#000000');
   }
   if (colors.length === 1) {
     return Array(colorCount).fill(colors[0]);
@@ -104,9 +98,9 @@ function interpolateColors(colors, colorCount) {
         : Math.round(colorCount / (colors.length - 1));
 
     for (
-      let i = 0, blend = 0;
-      i < segmentLength - 2;
-      i++, blend += 1.0 / (segmentLength - 1)
+      let j = 0, blend = 0;
+      j < segmentLength - 2;
+      j++, blend += 1.0 / (segmentLength - 1)
     ) {
       const r = end.r * blend + (1 - blend) * start.r;
       const g = end.g * blend + (1 - blend) * start.g;
@@ -170,7 +164,7 @@ function lineJoin(p0, p1, p2, p3, width) {
     c = lineIntersect(p2, e, d, c);
   }
 
-  return "M" + a + "L" + b + " " + c + " " + d + "Z";
+  return 'M' + a + 'L' + b + ' ' + c + ' ' + d + 'Z';
 }
 
 // Compute intersection of two infinite lines ab and cd.
