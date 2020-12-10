@@ -46,7 +46,7 @@ export default class GradientPath extends Component {
         )}
         {pathList.map((path, i) => (
           <>
-            {i <= croppedPathIndex ? (
+            {i < croppedPathIndex ? (
               <Path
                 d={lineJoin(
                   path[0],
