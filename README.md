@@ -34,7 +34,7 @@ This component does **NOT** share the same props as `<Path>` from `react-native-
 | Prop Name      | Type     | Default Value |
 | -------------- | -------- | ------------- |
 | d              | String   | -             |
-| colors         | String[ ] | -             |
+| colors         | String[] | -             |
 | strokeWidth    | Number   | 1             |
 | precision      | Number   | 8             |
 | roundedCorners | Boolean  | false         |
