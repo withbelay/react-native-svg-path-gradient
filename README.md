@@ -31,6 +31,14 @@ yarn add react-native-svg-path-gradient
 
 This component does **NOT** share the same props as `<Path>` from `react-native-svg`. Only the props listed below are available:
 
+| Prop Name      | Type     | Default Value |
+| -------------- | -------- | ------------- |
+| d              | String   | -             |
+| colors         | String[] | -             |
+| strokeWidth    | Number   | 1             |
+| precision      | Number   | 8             |
+| roundedCorners | Boolean  | false         |
+
 ### d
 
 A string with an svg path. For refrence on how to make a path see the [Path documentation of SVG](https://www.w3.org/TR/SVG/paths.html) or the [react-native-svg path component](https://github.com/react-native-svg/react-native-svg#path)
@@ -48,11 +56,18 @@ Takes a number value for the stroke width of the path, default is 1.
 ### precision
 
 Takes a number value for the precision of the path segments. Lower is more accurate. The default value is 8. Reccomended values are between 5 and 20.
+
 **Note:** Going outside the reccomended range can cause issues with render times or the accuracy of the render. Use at your own risk.
+
+### roundedCorners
+
+Takes a boolean value, default is `false`. If `true` the corners of the path become rounded. Due to being a boolean value it is possible to just write `roundedCorners` as a prop with no value and `react-native` will treat it as true
+
+**Note:** Rounded Corners effectively doesn't round the corners as much as it extrudes the line caps. This means that your path can become slightly longer when the linecap is added. Also linecaps can be added for "closed" paths which will present an issue so this prop should be avoided
 
 ## Examples
 
-### Simple
+### Ribbon
 
 The following code will produce something like this:
 
@@ -76,6 +91,26 @@ import {Svg} from 'react-native-svg';
       'rgb(110, 64, 170)',
     ]}
   />
+</Svg>
+```
+
+### HorseShoe
+
+The following code will produce something like this:
+
+![Example code result](https://raw.githubusercontent.com/investingwolf/react-native-svg-path-gradient/main/images/react-native-svg-path-gradient-1.png)
+
+```javascript
+import GradientPath from 'react-native-svg-path-gradient';
+import {Svg} from 'react-native-svg';
+
+<Svg height="100%" width="100%" viewBox="-2 -2 295 256">
+    <GradientPath
+        d={'M55.5,237.2c-23.5-23.3-38.1-55.6-38.1-91.3C17.3,75,74.8,17.5,145.7,17.5C216.5,17.5,274,75,274,145.9  c0,35.7-14.6,68-38.1,91.3'}
+        colors={['#A35AFF', '#5AF5FF']}
+        strokeWidth={35}
+        roundedCorners
+    />
 </Svg>
 ```
 
