@@ -1,26 +1,47 @@
 import React, { Component } from "react";
-import { Path, G } from "react-native-svg";
+import { Path, G, Circle } from "react-native-svg";
 import PropTypes from "prop-types";
 import { svgPathProperties } from "svg-path-properties";
 import Color from "color";
 
 export default class GradientPath extends Component {
   render() {
-    const { d, colors, strokeWidth, precision } = this.props;
-    const pathList = quads(samples(d, precision));
-    const gradientArray = interpolateColors(colors, pathList.length).reverse();
+    const { d, colors, strokeWidth, precision, roundedCorners } = this.props;
+    const path = new svgPathProperties(d);
+    const pathList = quads(samples(path, precision));
+    const gradientArray = interpolateColors(colors, pathList.length);
+
+    const PATH_START = path.getPointAtLength(0);
+    const PATH_END = path.getPointAtLength(path.getTotalLength());
 
     return (
       <G>
-        {pathList.reverse().map((path, i) => {
+        {pathList.map((path, i) => {
           return (
             <Path
-              d={lineJoin(path[0], path[1], path[2], path[3], strokeWidth)}
+              d={lineJoin(path[0], path[1], path[2], path[3], strokeWidth - 1)}
               stroke={gradientArray[i]}
               fill={gradientArray[i]}
             />
           );
         })}
+        {roundedCorners && (
+          <G>
+            <Circle
+              cx={PATH_START.x}
+              cy={PATH_START.y}
+              r={strokeWidth / 2}
+              fill={gradientArray[0]}
+            />
+            <Circle
+              cx={PATH_END.x}
+              cy={PATH_END.y}
+              r={strokeWidth / 2}
+              fill={gradientArray[0]}
+              fill={gradientArray[gradientArray.length - 1]}
+            />
+          </G>
+        )}
       </G>
     );
   }
@@ -29,6 +50,7 @@ export default class GradientPath extends Component {
 GradientPath.defaultProps = {
   strokeWidth: 1,
   precision: 8,
+  roundedCorners: false,
 };
 
 GradientPath.propTypes = {
@@ -36,6 +58,7 @@ GradientPath.propTypes = {
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   strokeWidth: PropTypes.number,
   precision: PropTypes.number,
+  roundedCorners: PropTypes.bool,
 };
 
 // color interpolation function
@@ -68,8 +91,7 @@ function interpolateColors(colors, colorCount) {
 }
 
 // Sample the SVG path uniformly with the specified precision.
-function samples(d, precision) {
-  const path = new svgPathProperties(d);
+function samples(path, precision) {
   const n = path.getTotalLength();
   const normalizedLengths = [0];
   const dt = precision;
