@@ -38,6 +38,7 @@ This component does **NOT** share the same props as `<Path>` from `react-native-
 | strokeWidth    | Number   | 1             |
 | precision      | Number   | 8             |
 | roundedCorners | Boolean  | false         |
+| percent        | Number   | 1             |
 
 ### d
 
@@ -64,6 +65,10 @@ Takes a number value for the precision of the path segments. Lower is more accur
 Takes a boolean value, default is `false`. If `true` the corners of the path become rounded. Due to being a boolean value it is possible to just write `roundedCorners` as a prop with no value and `react-native` will treat it as true
 
 **Note:** Rounded Corners effectively doesn't round the corners as much as it extrudes the line caps. This means that your path can become slightly longer when the linecap is added. Also linecaps can be added for "closed" paths which will present an issue so this prop should be avoided
+
+### percent
+
+Takes a number, default is `1`. This draws a percent of the actual path. e.g. `0.5` will draw roughly half of the path. This value can be used to make animations.
 
 ## Examples
 
@@ -110,6 +115,49 @@ import {Svg} from 'react-native-svg';
         colors={['#A35AFF', '#5AF5FF']}
         strokeWidth={35}
         roundedCorners
+    />
+</Svg>
+```
+
+### Animated Heart
+
+**Note:** `useNativeDriver` must be `false`. The performance of this animation can be impacted heavily by the complexity of the path. This library is not designed for animating svgs, we suggest using a library like [Airbnb's Lottie](https://github.com/lottie-react-native/lottie-react-native)
+
+The following code will produce something like this:
+
+![Example code result](https://github.com/investingwolf/react-native-svg-path-gradient/blob/main/images/heart.gif)
+
+```javascript
+import {useRef, useEffect} from 'react';
+import {Easing, Animated} from 'react-native';
+import GradientPath from 'react-native-svg-path-gradient';
+import {Svg} from 'react-native-svg';
+const AnimatedGradientPath = Animated.createAnimatedComponent(GradientPath);
+
+const fillPercent = useRef(new Animated.Value(0)).current;
+
+useEffect(() => {
+    const fillAnim = () => {
+        Animated.timing(fillPercent, {
+        toValue: 1,
+        duration: 800,
+        delay: 0,
+        easing: Easing.inOut(Easing.cubic),
+        useNativeDriver: false,
+        }).start();
+    };
+    fillAnim();
+}, []);
+
+<Svg height="100%" width="100%" viewBox="0 0 500 500">
+    <AnimatedGradientPath
+    d="M340.8,98.4c50.7,0,91.9,41.3,91.9,92.3c0,26.2-10.9,49.8-28.3,66.6L256,407.1L105,254.6c-15.8-16.6-25.6-39.1-25.6-63.9
+    c0-51,41.1-92.3,91.9-92.3c38.2,0,70.9,23.4,84.8,56.8C269.8,121.9,302.6,98.4,340.8,98.4"
+    colors={['#FF69B4', '#FF69B4', 'red', 'red', '#FF69B4']}
+    strokeWidth={8}
+    precision={4}
+    percent={fillPercent}
+    roundedCorners
     />
 </Svg>
 ```

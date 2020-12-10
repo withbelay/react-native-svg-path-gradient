@@ -6,25 +6,28 @@ import Color from "color";
 
 export default class GradientPath extends Component {
   render() {
-    const { d, colors, strokeWidth, precision, roundedCorners } = this.props;
+    const {
+      d,
+      colors,
+      strokeWidth,
+      precision,
+      roundedCorners,
+      percent,
+    } = this.props;
     const path = new svgPathProperties(d);
     const pathList = quads(samples(path, precision));
     const gradientArray = interpolateColors(colors, pathList.length);
 
+    const percent_ = Math.max(0, Math.min(percent, 1));
+    const croppedPathIndex = Math.round(pathList.length * percent_);
+
     const PATH_START = path.getPointAtLength(0);
-    const PATH_END = path.getPointAtLength(path.getTotalLength());
+    const PATH_END = path.getPointAtLength(
+      Math.round(path.getTotalLength() * percent_)
+    );
 
     return (
       <G>
-        {pathList.map((path, i) => {
-          return (
-            <Path
-              d={lineJoin(path[0], path[1], path[2], path[3], strokeWidth - 1)}
-              stroke={gradientArray[i]}
-              fill={gradientArray[i]}
-            />
-          );
-        })}
         {roundedCorners && (
           <G>
             <Circle
@@ -37,11 +40,29 @@ export default class GradientPath extends Component {
               cx={PATH_END.x}
               cy={PATH_END.y}
               r={strokeWidth / 2}
-              fill={gradientArray[0]}
-              fill={gradientArray[gradientArray.length - 1]}
+              fill={gradientArray[croppedPathIndex - 1]}
             />
           </G>
         )}
+        {pathList.map((path, i) => (
+          <>
+            {i < croppedPathIndex ? (
+              <Path
+                d={lineJoin(
+                  path[0],
+                  path[1],
+                  path[2],
+                  path[3],
+                  strokeWidth - 1
+                )}
+                stroke={gradientArray[i]}
+                fill={gradientArray[i]}
+              />
+            ) : (
+              <></>
+            )}
+          </>
+        ))}
       </G>
     );
   }
@@ -51,6 +72,7 @@ GradientPath.defaultProps = {
   strokeWidth: 1,
   precision: 8,
   roundedCorners: false,
+  percent: 1,
 };
 
 GradientPath.propTypes = {
@@ -59,10 +81,17 @@ GradientPath.propTypes = {
   strokeWidth: PropTypes.number,
   precision: PropTypes.number,
   roundedCorners: PropTypes.bool,
+  percent: PropTypes.number,
 };
 
 // color interpolation function
 function interpolateColors(colors, colorCount) {
+  if (colors.length === 0) {
+    return Array(colorCount).fill("#000000");
+  }
+  if (colors.length === 1) {
+    return Array(colorCount).fill(colors[0]);
+  }
   const colorArray = [];
 
   for (let i = 0; i < colors.length - 1; i++) {
