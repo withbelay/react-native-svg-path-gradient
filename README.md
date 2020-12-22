@@ -76,14 +76,14 @@ Takes a number, default is `1`. This draws a percent of the actual path. e.g. `0
 
 The following code will produce something like this:
 
-![Example code result](https://raw.githubusercontent.com/investingwolf/react-native-svg-path-gradient/main/images/react-native-svg-path-gradient.png)
+![Example code result](https://i.imgur.com/z4pbYKY.png)
 
 ```javascript
 import GradientPath from 'react-native-svg-path-gradient';
 import {Svg} from 'react-native-svg';
 
 <Svg height="500" width="500" viewBox="0 0 960 500">
-  <GradientPath 
+  <GradientPath
     d="M86,388L203,330C320,272,554,156,673.8333333333334,165.83333333333334C793.6666666666666,175.66666666666666,799.3333333333334,311.3333333333333,683.5,316.6666666666667C567.6666666666666,322,330.3333333333333,197,211.66666666666666,134.5L93,72"
     colors={[
       'rgb(110, 64, 170)',
@@ -96,27 +96,29 @@ import {Svg} from 'react-native-svg';
       'rgb(110, 64, 170)',
     ]}
   />
-</Svg>
+</Svg>;
 ```
 
 ### HorseShoe
 
 The following code will produce something like this:
 
-![Example code result](https://raw.githubusercontent.com/investingwolf/react-native-svg-path-gradient/main/images/react-native-svg-path-gradient-1.png)
+![Example code result](https://i.imgur.com/CSlMyoR.png)
 
 ```javascript
 import GradientPath from 'react-native-svg-path-gradient';
 import {Svg} from 'react-native-svg';
 
 <Svg height="100%" width="100%" viewBox="-2 -2 295 256">
-    <GradientPath
-        d={'M55.5,237.2c-23.5-23.3-38.1-55.6-38.1-91.3C17.3,75,74.8,17.5,145.7,17.5C216.5,17.5,274,75,274,145.9  c0,35.7-14.6,68-38.1,91.3'}
-        colors={['#A35AFF', '#5AF5FF']}
-        strokeWidth={35}
-        roundedCorners
-    />
-</Svg>
+  <GradientPath
+    d={
+      'M55.5,237.2c-23.5-23.3-38.1-55.6-38.1-91.3C17.3,75,74.8,17.5,145.7,17.5C216.5,17.5,274,75,274,145.9  c0,35.7-14.6,68-38.1,91.3'
+    }
+    colors={['#A35AFF', '#5AF5FF']}
+    strokeWidth={35}
+    roundedCorners
+  />
+</Svg>;
 ```
 
 ### Animated Heart
@@ -125,7 +127,7 @@ import {Svg} from 'react-native-svg';
 
 The following code will produce something like this:
 
-![Example code result](https://github.com/investingwolf/react-native-svg-path-gradient/blob/main/images/heart.gif)
+![Example code result](https://i.imgur.com/uM8UtLn.gifv)
 
 ```javascript
 import {useRef, useEffect} from 'react';
@@ -137,20 +139,20 @@ const AnimatedGradientPath = Animated.createAnimatedComponent(GradientPath);
 const fillPercent = useRef(new Animated.Value(0)).current;
 
 useEffect(() => {
-    const fillAnim = () => {
-        Animated.timing(fillPercent, {
-        toValue: 1,
-        duration: 800,
-        delay: 0,
-        easing: Easing.inOut(Easing.cubic),
-        useNativeDriver: false,
-        }).start();
-    };
-    fillAnim();
+  const fillAnim = () => {
+    Animated.timing(fillPercent, {
+      toValue: 1,
+      duration: 800,
+      delay: 0,
+      easing: Easing.inOut(Easing.cubic),
+      useNativeDriver: false,
+    }).start();
+  };
+  fillAnim();
 }, []);
 
 <Svg height="100%" width="100%" viewBox="0 0 500 500">
-    <AnimatedGradientPath
+  <AnimatedGradientPath
     d="M340.8,98.4c50.7,0,91.9,41.3,91.9,92.3c0,26.2-10.9,49.8-28.3,66.6L256,407.1L105,254.6c-15.8-16.6-25.6-39.1-25.6-63.9
     c0-51,41.1-92.3,91.9-92.3c38.2,0,70.9,23.4,84.8,56.8C269.8,121.9,302.6,98.4,340.8,98.4"
     colors={['#FF69B4', '#FF69B4', 'red', 'red', '#FF69B4']}
@@ -158,8 +160,8 @@ useEffect(() => {
     precision={4}
     percent={fillPercent}
     roundedCorners
-    />
-</Svg>
+  />
+</Svg>;
 ```
 
 ## License
