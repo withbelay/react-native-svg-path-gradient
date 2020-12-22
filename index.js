@@ -44,16 +44,16 @@ export default class GradientPath extends Component {
             />
           </G>
         )}
-        {pathList.map((path, i) => {
+        {pathList.map((pathSegment, i) => {
           if (i < croppedPathIndex) {
             return (
               <Path
                 key={`gradient-path-segment-${i}`}
                 d={lineJoin(
-                  path[0],
-                  path[1],
-                  path[2],
-                  path[3],
+                  pathSegment[0],
+                  pathSegment[1],
+                  pathSegment[2],
+                  pathSegment[3],
                   strokeWidth - 1,
                 )}
                 stroke={gradientArray[i]}
