@@ -127,7 +127,7 @@ import {Svg} from 'react-native-svg';
 
 The following code will produce something like this:
 
-![Example code result](https://i.imgur.com/uM8UtLn.gifv)
+![Example code result](https://i.imgur.com/uM8UtLn.gif)
 
 ```javascript
 import {useRef, useEffect} from 'react';
