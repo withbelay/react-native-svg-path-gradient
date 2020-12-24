@@ -99,13 +99,14 @@ function interpolateColors(colors, colorCount) {
     colorArray.push(Color(start).hex());
     const segmentLength =
       i === colors.length - 2
-        ? colorCount - (colorArray.length - 1)
-        : Math.round(colorCount / (colors.length - 1));
+        ? colorCount - colorArray.length - 1
+        : Math.round(colorCount / colors.length);
 
+    const deltaBlend = 1.0 / (segmentLength + 1);
     for (
-      let j = 0, blend = 0;
-      j < segmentLength - 2;
-      j++, blend += 1.0 / (segmentLength - 1)
+      let j = 0, blend = deltaBlend;
+      j < segmentLength;
+      j++, blend += deltaBlend
     ) {
       const r = end.r * blend + (1 - blend) * start.r;
       const g = end.g * blend + (1 - blend) * start.g;
@@ -114,6 +115,7 @@ function interpolateColors(colors, colorCount) {
       colorArray.push(Color.rgb(r, g, b).hex());
     }
   }
+
   colorArray.push(Color(colors[colors.length - 1]).hex());
   return colorArray;
 }
